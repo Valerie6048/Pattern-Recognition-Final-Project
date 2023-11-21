@@ -76,7 +76,7 @@ with tabs1:
     st.title('Heatmap Visualization')
     
     fig, ax = plt.subplots(figsize=(10, 10))
-    sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm', ax=ax)
+    sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='rocket', ax=ax)
     st.pyplot(fig)
 
 with tabs2:
