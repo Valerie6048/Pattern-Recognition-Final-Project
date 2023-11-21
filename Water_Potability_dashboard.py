@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 from scipy.stats import norm
+import plotly.express as px
 
 # Suppress future warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
