@@ -33,3 +33,10 @@ In this final project, the goal is to build a machine-learning model for predict
 - Discuss recommendations or further steps, such as refining the model, exploring additional features, or improving data quality.
 
 This overview provides a high-level understanding of the Pattern Recognition Final Project, covering key steps from data exploration to model deployment through a Streamlit dashboard.
+
+<!---
+your comment goes here
+and here
+'''https://www.kaggle.com/datasets/adityakadiwal/water-potability'''
+-->
+
