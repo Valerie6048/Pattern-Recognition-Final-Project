@@ -6,7 +6,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
-from scipy.stats import norm
+import plotly.express as px
+
+# Suppress future warnings
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 
 url = 'https://raw.githubusercontent.com/Sarthak-1408/Water-Potability/main/water_potability.csv'
 df_water_potability = pd.read_csv('water_potability_cleaned.csv')
@@ -26,29 +30,7 @@ def icon(emoji: str):
         f'<span style="font-size: 78px; line-height: 1">{emoji}</span>',
         unsafe_allow_html=True,
     )
-
-def plot_normal_distribution(data, column_name):
-    # Menghitung mean dan std deviasi
-    mean, std_dev = data[column_name].mean(), data[column_name].std()
-
-    # Membuat histogram
-    fig, ax = plt.subplots()
-    sns.histplot(data[column_name], kde=True, stat='density', color='skyblue', ax=ax)
-
-    # Membuat kurva distribusi normal
-    xmin, xmax = plt.xlim()
-    x = np.linspace(xmin, xmax, 100)
-    p = norm.pdf(x, mean, std_dev)
-    ax.plot(x, p, 'k', linewidth=2)
-
-    title = f'Fit results: mean = {mean:.2f},  std = {std_dev:.2f}'
-    ax.set_title(title)
-
-    # Display the plot in Streamlit
-    st.pyplot(fig)
-
-
-
+    
 # Allow user input for new data
 new_data = {}  # Add input fields for new data
 
@@ -83,7 +65,7 @@ with tabs1:
     colors = ['skyblue', 'salmon']
 
     fig, ax = plt.subplots()
-    sns.countplot(x='Potability', data=df_water_potability, hue='Potability', palette=colors, ax=ax, legend=False)
+    sns.countplot(x='Potability', data=df_water_potability, palette=colors, ax=ax)
     ax.set_title('Potability Count')
     ax.set_xlabel('Potability')
     ax.set_ylabel('Count')
@@ -91,23 +73,10 @@ with tabs1:
     # Display the plot in Streamlit
     st.pyplot(fig)
 
-    columns_to_visualize = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate',
-                         'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
-
-    # Streamlit app
-    st.title('Normal Distribution Visualization')
-    for column in columns_to_visualize:
-        plot_normal_distribution(df_water_potability, column)
-
     st.title('Heatmap Visualization')
-
-    fig, ax = plt.subplots(figsize=(8, 6))
-    sns.heatmap(correlation_matrix, annot=True, cmap='rocket', fmt=".2f", ax=ax)
-    ax.set_title('Correlation Matrix between PM2.5 and Weather Parameters')
-    ax.set_xlabel('Weather Parameters')
-    ax.set_ylabel('Weather Parameters')
-
-    # Display the plot in Streamlit
+    
+    fig, ax = plt.subplots(figsize=(10, 10))
+    sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='rocket', ax=ax)
     st.pyplot(fig)
 
 with tabs2:
