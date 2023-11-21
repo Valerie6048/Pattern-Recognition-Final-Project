@@ -86,7 +86,7 @@ with tabs1:
     colors = ['skyblue', 'salmon']
 
     fig, ax = plt.subplots()
-    sns.countplot(x='Potability', data=df_water_potability, hue='Potability', palette=colors, ax=ax)
+    sns.countplot(x='Potability', data=df_water_potability, palette=colors, ax=ax)
     ax.set_title('Potability Count')
     ax.set_xlabel('Potability')
     ax.set_ylabel('Count')
