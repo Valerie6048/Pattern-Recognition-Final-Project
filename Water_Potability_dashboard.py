@@ -37,7 +37,10 @@ def plot_normal_distribution(data, column_name):
 
     # Membuat histogram
     fig, ax = plt.subplots()
-    sns.histplot(data[column_name], kde=True, stat='density', color='skyblue', ax=ax)
+    
+    # Filter out infinite values before plotting
+    non_inf_values = data[~data[column_name].isin([np.inf, -np.inf])][column_name]
+    sns.histplot(non_inf_values, kde=True, stat='density', color='skyblue', ax=ax)
 
     # Membuat kurva distribusi normal
     xmin, xmax = plt.xlim()
@@ -99,11 +102,14 @@ with tabs1:
                          'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
 
     # Streamlit app
+    # Streamlit app
     st.title('Normal Distribution Visualization')
+    
     for column in columns_to_visualize:
-        plot_normal_distribution(df_water_potability, column)
-
-    for column in columns_to_visualize:
+        # Use Matplotlib and Seaborn for normal distribution plot
+        normal_distribution_fig = plot_normal_distribution(df_water_potability, column)
+        st.pyplot(normal_distribution_fig)
+    
         # Use Plotly Express for histograms
         fig = px.histogram(df_water_potability, x=column, marginal="box", nbins=30, title=f'Normal Distribution: {column}')
         st.plotly_chart(fig)
