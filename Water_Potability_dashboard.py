@@ -103,16 +103,21 @@ with tabs1:
     for column in columns_to_visualize:
         plot_normal_distribution(df_water_potability, column)
 
+    for column in columns_to_visualize:
+        # Use Plotly Express for histograms
+        fig = px.histogram(df_water_potability, x=column, marginal="box", nbins=30, title=f'Normal Distribution: {column}')
+        st.plotly_chart(fig)
+
     st.title('Heatmap Visualization')
-
-    fig, ax = plt.subplots(figsize=(8, 6))
-    sns.heatmap(correlation_matrix, annot=True, cmap='rocket', fmt=".2f", ax=ax)
-    ax.set_title('Correlation Matrix between PM2.5 and Weather Parameters')
-    ax.set_xlabel('Weather Parameters')
-    ax.set_ylabel('Weather Parameters')
-
-    # Display the plot in Streamlit
-    st.pyplot(fig)
+    
+    # Use Plotly for heatmap
+    fig = px.imshow(correlation_matrix.values,
+                    labels=dict(x='Weather Parameters', y='Weather Parameters'),
+                    x=correlation_matrix.columns,
+                    y=correlation_matrix.columns,
+                    color_continuous_scale='rocket',
+                    zmin=-1, zmax=1)
+    st.plotly_chart(fig)
 
 with tabs2:
     st.header('User Input Features')
