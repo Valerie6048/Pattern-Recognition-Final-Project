@@ -34,7 +34,7 @@ def icon(emoji: str):
 def plot_normal_distribution(data, column_name):
     # Menghitung mean dan std deviasi
     mean, std_dev = data[column_name].mean(), data[column_name].std()
-
+    
     # Filter out infinite values before plotting
     non_inf_values = data[~data[column_name].isin([np.inf, -np.inf])][column_name]
 
