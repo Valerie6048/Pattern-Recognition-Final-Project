@@ -30,31 +30,7 @@ def icon(emoji: str):
         f'<span style="font-size: 78px; line-height: 1">{emoji}</span>',
         unsafe_allow_html=True,
     )
-
-def plot_normal_distribution(data, column_name):
-    # Menghitung mean dan std deviasi
-    mean, std_dev = data[column_name].mean(), data[column_name].std()
     
-    # Filter out infinite values before plotting
-    non_inf_values = data[~data[column_name].isin([np.inf, -np.inf])][column_name]
-
-    # Membuat histogram
-    fig, ax = plt.subplots()
-    sns.histplot(non_inf_values, kde=True, stat='density', color='skyblue', ax=ax)
-
-    # Membuat kurva distribusi normal
-    xmin, xmax = plt.xlim()
-    x = np.linspace(xmin, xmax, 100)
-    p = norm.pdf(x, mean, std_dev)
-    ax.plot(x, p, 'k', linewidth=2)
-
-    title = f'Fit results: mean = {mean:.2f},  std = {std_dev:.2f}'
-    ax.set_title(title)
-
-    return fig  # Return the Matplotlib figure
-
-
-
 # Allow user input for new data
 new_data = {}  # Add input fields for new data
 
@@ -96,22 +72,6 @@ with tabs1:
 
     # Display the plot in Streamlit
     st.pyplot(fig)
-
-    columns_to_visualize = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate',
-                         'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
-
-    # Streamlit app
-    # Streamlit app
-    st.title('Normal Distribution Visualization')
-    
-    for column in columns_to_visualize:
-        # Use Matplotlib and Seaborn for normal distribution plot
-        normal_distribution_fig = plot_normal_distribution(df_water_potability, column)
-        st.pyplot(normal_distribution_fig)
-    
-        # Use Plotly Express for histograms
-        fig = px.histogram(df_water_potability, x=column, marginal="box", nbins=30, title=f'Normal Distribution: {column}')
-        st.plotly_chart(fig)
 
     st.title('Heatmap Visualization')
     
