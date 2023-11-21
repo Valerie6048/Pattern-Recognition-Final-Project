@@ -10,8 +10,7 @@ from scipy.stats import norm
 
 # Suppress future warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
-# Set the configuration key to handle the error
-pd.set_option("mode.use_inf_as_null", True)
+
 
 url = 'https://raw.githubusercontent.com/Sarthak-1408/Water-Potability/main/water_potability.csv'
 df_water_potability = pd.read_csv('water_potability_cleaned.csv')
