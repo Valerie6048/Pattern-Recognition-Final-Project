@@ -8,6 +8,9 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
+# Suppress future warnings
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 url = 'https://raw.githubusercontent.com/Sarthak-1408/Water-Potability/main/water_potability.csv'
 df_water_potability = pd.read_csv('water_potability_cleaned.csv')
 
@@ -83,7 +86,7 @@ with tabs1:
     colors = ['skyblue', 'salmon']
 
     fig, ax = plt.subplots()
-    sns.countplot(x='Potability', data=df_water_potability, hue='Potability', palette=colors, ax=ax, legend=False)
+    sns.countplot(x='Potability', data=df_water_potability, hue='Potability', palette=colors, ax=ax)
     ax.set_title('Potability Count')
     ax.set_xlabel('Potability')
     ax.set_ylabel('Count')
