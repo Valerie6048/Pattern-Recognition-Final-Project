@@ -39,7 +39,7 @@ original_feature_ranges = {feature_name: (X[feature_name].min(), X[feature_name]
 with st.sidebar:
     st.image('OIG.jpeg')
     st.title('Anggota Kelompok')
-    st.write('1. Akhmad Nizar Zakaria\n2. Attar Syifa\n3. Muh Fijar Sukma Kartika\n4. Muh Zuman Ananta')
+    st.write('1. Akhmad Nizar Zakaria\n2. Attar Syifa Kamal\n3. Muh Fijar Sukma Kartika\n4. Muh Zuman Ananta')
     st.caption('Pengpol Kelompok 8 2023')
 
 icon("🤖")
