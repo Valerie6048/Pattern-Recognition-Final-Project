@@ -35,11 +35,11 @@ def plot_normal_distribution(data, column_name):
     # Menghitung mean dan std deviasi
     mean, std_dev = data[column_name].mean(), data[column_name].std()
 
-    # Membuat histogram
-    fig, ax = plt.subplots()
-    
     # Filter out infinite values before plotting
     non_inf_values = data[~data[column_name].isin([np.inf, -np.inf])][column_name]
+
+    # Membuat histogram
+    fig, ax = plt.subplots()
     sns.histplot(non_inf_values, kde=True, stat='density', color='skyblue', ax=ax)
 
     # Membuat kurva distribusi normal
@@ -51,8 +51,7 @@ def plot_normal_distribution(data, column_name):
     title = f'Fit results: mean = {mean:.2f},  std = {std_dev:.2f}'
     ax.set_title(title)
 
-    # Display the plot in Streamlit
-    st.pyplot(fig)
+    return fig  # Return the Matplotlib figure
 
 
 
