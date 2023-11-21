@@ -75,14 +75,9 @@ with tabs1:
 
     st.title('Heatmap Visualization')
     
-    # Use Plotly for heatmap
-    fig = px.imshow(correlation_matrix.values,
-                    labels=dict(x='Weather Parameters', y='Weather Parameters'),
-                    x=correlation_matrix.columns,
-                    y=correlation_matrix.columns,
-                    color_continuous_scale='rocket',
-                    zmin=-1, zmax=1)
-    st.plotly_chart(fig)
+    fig, ax = plt.subplots(figsize=(10, 10))
+    sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm', ax=ax)
+    st.pyplot(fig)
 
 with tabs2:
     st.header('User Input Features')
