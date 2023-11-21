@@ -11,8 +11,6 @@ import plotly.express as px
 # Suppress future warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-
-url = 'https://raw.githubusercontent.com/Sarthak-1408/Water-Potability/main/water_potability.csv'
 df_water_potability = pd.read_csv('water_potability_cleaned.csv')
 
 df_water_potability = df_water_potability.drop(df_water_potability.columns[0], axis=1)
@@ -39,7 +37,7 @@ model.fit(X_train_scaled, y_train)
 original_feature_ranges = {feature_name: (X[feature_name].min(), X[feature_name].max()) for feature_name in X.columns}
 
 with st.sidebar:
-    st.image('https://replicate.delivery/pbxt/NyYo4xiKhf1Pby5JQ3qyJyKhspiauArifchPEzSIGnxLxU6RA/out-1.png')
+    st.image('OIG.jpeg')
     st.title('Anggota Kelompok')
     st.write('1. Akhmad Nizar Zakaria\n2. Attar Syifa\n3. Muh Fijar Sukma Kartika\n4. Muh Zuman Ananta')
     st.caption('Pengpol Kelompok 8 2023')
