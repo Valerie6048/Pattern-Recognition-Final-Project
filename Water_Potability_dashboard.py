@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import seaborn as sns
+import matplotlib.pyplot as plt
+import plotly.express as px
+import scipy.stats as stats
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
-import plotly.express as px
 
 # Suppress future warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -46,7 +47,7 @@ icon("🤖")
 """
 # Pattern Recognition Final Project
 ## Overview
-In this final project, we aim to build a machine learning model to predict the potability of water based on various water quality parameters. The dataset used for this project includes information on water characteristics such as pH, hardness, solids, chloramines, sulfate, conductivity, organic carbon, trihalomethanes, turbidity, and the target variable, potability.
+In this final project, we aim to build a machine-learning model to predict the potability of water based on various water quality parameters. The dataset used for this project includes information on water characteristics such as pH, hardness, solids, chloramines, sulfate, conductivity, organic carbon, trihalomethanes, turbidity, and the target variable, potability.
 """
 
 st.subheader('Water Potability Dataset and Visualization')
@@ -69,6 +70,31 @@ with tabs1:
     ax.set_ylabel('Count')
 
     # Display the plot in Streamlit
+    st.pyplot(fig)
+
+    columns_to_visualize = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+
+    st.title('Normal Distribution Visualization')
+    
+    feat_col, dist_col = st.columns(2)
+
+    feature = feat_col.selectbox('Select Feature', columns_to_visualize)
+    data = df_water_quality[feature] 
+    
+    fig, ax = plt.subplots()
+    dist_col.pyplot(fig)  
+    
+    ax.hist(data, bins=25, density=True, alpha=0.6)  
+    
+    xmin, xmax = ax.get_xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = stats.norm.pdf(x, data.mean(), data.std())
+    ax.plot(x, p, 'k', linewidth=2)    
+    
+    ax.set_title(feature)
+    ax.set_xlabel(feature)
+    ax.set_ylabel("Probability Density")
+    
     st.pyplot(fig)
 
     st.title('Heatmap Visualization')
