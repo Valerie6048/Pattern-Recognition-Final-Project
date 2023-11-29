@@ -61,10 +61,11 @@ with tabs1:
 
     st.title('Water Potability Distribution Based on Potability Category')
 
-    colors = ['skyblue', 'salmon']
+    colors = ['crimson', 'deeppink']
 
     fig, ax = plt.subplots()
     sns.countplot(x='Potability', data=df_water_potability, palette=colors, ax=ax)
+    ax.set_xticklabels(['Not Potable', 'Potable'])
     ax.set_title('Potability Count')
     ax.set_xlabel('Potability')
     ax.set_ylabel('Count')
