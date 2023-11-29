@@ -79,7 +79,7 @@ with tabs1:
     feat_col, dist_col = st.columns(2)
 
     feature = feat_col.selectbox('Select Feature', columns_to_visualize)
-    data = df_water_quality[feature] 
+    data = df_water_potability[feature] 
     
     fig, ax = plt.subplots()
     dist_col.pyplot(fig)  
