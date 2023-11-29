@@ -79,14 +79,16 @@ with tabs1:
     feature = st.selectbox('Select Feature', columns_to_visualize)
     data = df_water_potability[feature]   
     
+    fig, ax = plt.subplots()
+
     ax.hist(data, bins=25, density=True, alpha=0.6)  
     
     xmin, xmax = ax.get_xlim()
     x = np.linspace(xmin, xmax, 100)
     p = stats.norm.pdf(x, data.mean(), data.std())
-    ax.plot(x, p, 'k', linewidth=2)    
+    ax.plot(x, p, 'k', linewidth=2)
     
-    ax.set_title(feature)
+    ax.set_title(feature) 
     ax.set_xlabel(feature)
     ax.set_ylabel("Probability Density")
     
