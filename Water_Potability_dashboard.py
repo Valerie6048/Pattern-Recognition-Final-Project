@@ -75,14 +75,9 @@ with tabs1:
     columns_to_visualize = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
 
     st.title('Normal Distribution Visualization')
-    
-    feat_col, dist_col = st.columns(2)
 
-    feature = feat_col.selectbox('Select Feature', columns_to_visualize)
-    data = df_water_potability[feature] 
-    
-    fig, ax = plt.subplots()
-    dist_col.pyplot(fig)  
+    feature = st.selectbox('Select Feature', columns_to_visualize)
+    data = df_water_potability[feature]   
     
     ax.hist(data, bins=25, density=True, alpha=0.6)  
     
