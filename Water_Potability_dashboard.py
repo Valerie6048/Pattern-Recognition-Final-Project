@@ -59,7 +59,7 @@ tabs1, tabs2= st.tabs(["Data Visualization", "Prediction Result"])
 
 with tabs1:
 
-    st.title('Water Potability Distribution Based on Potability Category')
+    st.subheader('Water Potability Distribution Based on Potability Category')
 
     colors = ['crimson', 'deeppink']
 
@@ -75,7 +75,7 @@ with tabs1:
 
     columns_to_visualize = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
 
-    st.title('Normal Distribution Visualization')
+    st.subheader('Normal Distribution Visualization')
 
     feature = st.selectbox('Select Feature', columns_to_visualize)
     data = df_water_potability[feature]   
@@ -95,7 +95,7 @@ with tabs1:
     
     st.pyplot(fig)
 
-    st.title('Heatmap Visualization')
+    st.subheader('Heatmap Visualization')
     
     fig, ax = plt.subplots(figsize=(10, 10))
     sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='rocket', ax=ax)
