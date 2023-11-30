@@ -103,55 +103,32 @@ with tabs1:
 
 with tabs2:
     st.header('User Input Features')
-    new_data = {}
-    for feature_name in X.columns:
-        user_input = st.number_input(label=feature_name, 
-                                    min_value=None, 
-                                    max_value=None,  
-                                    value=X[feature_name].mean())
-        
-        new_data[feature_name] = user_input
     
-    new_data = pd.DataFrame([new_data]) 
-    
-    # Normalize 
-    new_data_scaled = scaler.transform(new_data)  
-    
-    # Predict  
-    prediction = model.predict(new_data_scaled)
-    probability = model.predict_proba(new_data_scaled)[:, 1]
-    
-    # Display
-    st.subheader('Prediction Result')
-    result_text = f"The water is {'potable' if prediction[0] == 1 else 'not potable'} with a probability of {probability[0]:.2%}." 
-    st.write(result_text)
+    col1, col2 = st.columns(2)
 
+    features_1 = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate'] 
+    features_2 = ['Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+    
+    new_data = {}
+    with col1:
+        for feature in features_1:
+            new_data[feature] = st.number_input(feature, min_value=None, max_value=None, value=None)
+            
+    with col2:
+        for feature in features_2:
+            new_data[feature] = st.number_input(feature, min_value=None, max_value=None, value=None)
+            
+    new_data = pd.DataFrame([new_data])
+    
+    # Normalize and predict
+    new_data_scaled = scaler.transform(new_data)  
+    prediction = model.predict(new_data_scaled)
+    
+    # Display prediction
+    probability = prediction[0]
+    st.write(f"Prediction: {'Potable' if probability>=0.5 else 'Not Potable'}")
+
+    
+    new_data = {}
 
 st.caption('Pengpol Kelompok 8 2023')
-'''
-    for feature_name in X.columns:
-        original_min, original_max = original_feature_ranges[feature_name]
-        user_input = st.slider(
-            f'Input {feature_name}', 
-            float(original_min), 
-            float(original_max), 
-            float(X[feature_name].mean())
-        )
-        # Map the user input back to the original range
-        normalized_input = (user_input - original_min) / (original_max - original_min)
-        new_data[feature_name] = normalized_input
-    
-    new_data = pd.DataFrame([new_data])
-
-    # Normalize the new data using the same scaler
-    new_data_scaled = scaler.transform(new_data)
-
-    # Predict the potability for new data
-    prediction = model.predict(new_data_scaled)
-    probability = model.predict_proba(new_data_scaled)[:, 1]
-
-    # Display the prediction result
-    st.subheader('Prediction Result')
-    result_text = f"The water is {'potable' if prediction[0] == 1 else 'not potable'} with a probability of {probability[0]:.2%}."
-    st.write(result_text)
-'''
