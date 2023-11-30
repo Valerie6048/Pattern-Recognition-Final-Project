@@ -38,7 +38,7 @@ model.fit(X_train_scaled, y_train)
 original_feature_ranges = {feature_name: (X[feature_name].min(), X[feature_name].max()) for feature_name in X.columns}
 
 with st.sidebar:
-    st.image('OIG.jpeg')
+    st.image('OIG (1).jpeg')
     st.title('Anggota Kelompok')
     st.write('1. Akhmad Nizar Zakaria\n2. Attar Syifa Kamal\n3. Muh Fijar Sukma Kartika\n4. Muh Zuman Ananta')
     st.caption('Pengpol Kelompok 8 2023')
