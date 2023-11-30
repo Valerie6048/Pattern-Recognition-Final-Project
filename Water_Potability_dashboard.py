@@ -103,7 +103,32 @@ with tabs1:
 
 with tabs2:
     st.header('User Input Features')
+    new_data = {}
+    for feature_name in X.columns:
+        user_input = st.number_input(label=feature_name, 
+                                    min_value=None, 
+                                    max_value=None,  
+                                    value=X[feature_name].mean())
+        
+        new_data[feature_name] = user_input
+    
+    new_data = pd.DataFrame([new_data]) 
+    
+    # Normalize 
+    new_data_scaled = scaler.transform(new_data)  
+    
+    # Predict  
+    prediction = model.predict(new_data_scaled)
+    probability = model.predict_proba(new_data_scaled)[:, 1]
+    
+    # Display
+    st.subheader('Prediction Result')
+    result_text = f"The water is {'potable' if prediction[0] == 1 else 'not potable'} with a probability of {probability[0]:.2%}." 
+    st.write(result_text)
 
+
+st.caption('Pengpol Kelompok 8 2023')
+'''
     for feature_name in X.columns:
         original_min, original_max = original_feature_ranges[feature_name]
         user_input = st.slider(
@@ -129,5 +154,4 @@ with tabs2:
     st.subheader('Prediction Result')
     result_text = f"The water is {'potable' if prediction[0] == 1 else 'not potable'} with a probability of {probability[0]:.2%}."
     st.write(result_text)
-
-st.caption('Pengpol Kelompok 8 2023')
+'''
