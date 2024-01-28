@@ -38,16 +38,21 @@ model.fit(X_train_scaled, y_train)
 original_feature_ranges = {feature_name: (X[feature_name].min(), X[feature_name].max()) for feature_name in X.columns}
 
 with st.sidebar:
-    st.image('OIG (1).jpeg')
-    st.title('Anggota Kelompok')
-    st.write('1. Akhmad Nizar Zakaria\n2. Attar Syifa Kamal\n3. Muh Fijar Sukma Kartika\n4. Muh Zuman Ananta')
-    st.caption('Pengpol Kelompok 8 2023')
+    st.image('potonihcuy.jpeg')
+    st.title('Biodata')
+    """
+    Name: Akhmad Nizar Zakaria
+    Github: [Valerie6048](https://github.com/Valerie6048)
+    LinkedIn: [Akhmad Nizar Zakaria](https://www.linkedin.com/in/akhmad-nizar-zakaria-8a692b229/)
+
+    """
+    st.caption('@Valerie6048')
 
 icon("🤖")
 """
 # Pattern Recognition Final Project
 ## Overview
-In this final project, we aim to build a machine-learning model to predict the potability of water based on various water quality parameters. The dataset used for this project includes information on water characteristics such as pH, hardness, solids, chloramines, sulfate, conductivity, organic carbon, trihalomethanes, turbidity, and the target variable, potability.
+In this final project, I aim to build a machine-learning model to predict the potability of water based on various water quality parameters. The dataset used for this project includes information on water characteristics such as pH, hardness, solids, chloramines, sulfate, conductivity, organic carbon, trihalomethanes, turbidity, and the target variable, potability.
 """
 
 st.subheader('Water Potability Dataset and Visualization')
@@ -128,4 +133,4 @@ with tabs2:
     result_text = f"The water is {'potable' if prediction[0] == 1 else 'not potable'} with a probability of {probability[0]:.2%}." 
     st.write(result_text)
 
-st.caption('Pengpol Kelompok 8 2023')
+st.caption('@Valerie6048')
