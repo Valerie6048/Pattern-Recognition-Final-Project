@@ -38,7 +38,7 @@ model.fit(X_train_scaled, y_train)
 original_feature_ranges = {feature_name: (X[feature_name].min(), X[feature_name].max()) for feature_name in X.columns}
 
 with st.sidebar:
-    st.image('potonihcuy.jpeg')
+    st.image('potonihcuy.jpg')
     st.title('Biodata')
     """
     Name: Akhmad Nizar Zakaria
